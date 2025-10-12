@@ -96,3 +96,30 @@
     transition-duration: 0.4s;
   }
 }
+
+/* 관심사 섹션 */
+.interest_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 3rem;
+}
+
+.interest_title {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.interest_chip_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.interest_chip {
+  white-space: nowrap;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  background-color: #acc4e2;
+  color: #ffffff;
+}
