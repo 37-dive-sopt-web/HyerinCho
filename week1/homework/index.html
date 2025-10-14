@@ -25,52 +25,158 @@
       </a>
     </div>
   </header>
+  <div class="all_container">
 
-  <div class="contents_container">
-    <!-- 네비게이션 -->
-    <aside class="navigation_container">
-      <nav>
-        <ul class="list_container">
-          <li class="list_contents">소개</li>
-          <li class="list_contents">관심사</li>
-          <li class="list_contents">나의 모습</li>
-          <li class="list_contents">사진첩</li>
-          <li class="list_contents">한마디</li>
-        </ul>
-      </nav>
-    </aside>
-
-    <main class="all_section_container">
-
-      <!-- 히어로(소개) 섹션 -->
-      <section class="introduce_container" id="introduce_section">
-        <img class="introduce_profile" src="./images/intro_profile.webp" alt="프로필 사진"/>
-        <div class="introduce_right_container">
-          <h2 class="section_title">안녕하세요 개발을 잘하고 싶은 조혜린이에요.</h2>
-          <p class="introduce_description">저희 친해져요 함께 개발 성장해요 환영해요 !</p>
-          <div class="introduce_btn_container">
-            <button class="introduce_btn">코드리뷰하기</button>
-            <button class="introduce_btn">모각공하기</button>
+    <div class="contents_container">
+      <!-- 네비게이션 -->
+      <aside class="navigation_container">
+        <nav>
+          <ul class="list_container">
+            <li class="list_contents">
+              <a href="#introduce_section">소개</a>
+            </li>
+            <li class="list_contents">
+              <a href="#interest_section">관심사</a>
+            </li>
+            <li class="list_contents">
+              <a href="#myself_section">나의 모습</a>
+            </li>
+            <li class="list_contents">사진첩</li>
+            <li class="list_contents">한마디</li>
+          </ul>
+        </nav>
+      </aside>
+  
+      <main class="all_section_container">
+  
+        <!-- 히어로(소개) 섹션 -->
+        <section class="introduce_container" id="introduce_section">
+          <img class="introduce_profile" src="./images/intro_profile.webp" alt="프로필 사진"/>
+          <div class="introduce_right_container">
+            <h2 class="section_title">안녕하세요 개발을 잘하고 싶은 조혜린이에요.</h2>
+            <p class="introduce_description">저희 친해져요 함께 개발 성장해요 환영해요 !</p>
+            <div class="introduce_btn_container">
+              <button class="introduce_btn">코드리뷰하기</button>
+              <button class="introduce_btn">모각공하기</button>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <!-- 관심사 섹션 -->
-      <section class="interest_container" id="interest_section">
-        <h2 class="section_title">나의 관심사</h2>
-        <ul class="interest_chip_container">
-          <li class="interest_chip">리액트</li>
-          <li class="interest_chip">리심스</li>
-          <li class="interest_chip">자바스크립트</li>
-          <li class="interest_chip">십이층 재밌더라</li>
-          <li class="interest_chip">집순이</li>
-          <li class="interest_chip">여행가고싶다</li>
-          <li class="interest_chip">족발보쌈 x</li>
-          <li class="interest_chip">크리스마스</li>
-          <li class="interest_chip">겨울</li>
-        </ul>
-      </section>
-    </main>
+        </section>
+  
+        <!-- 관심사 섹션 -->
+        <section class="interest_container" id="interest_section">
+          <h2 class="section_title">나의 관심사</h2>
+          <ul class="interest_chip_container">
+            <li class="interest_chip">리액트</li>
+            <li class="interest_chip">리심스</li>
+            <li class="interest_chip">자바스크립트</li>
+            <li class="interest_chip">십이층 재밌더라</li>
+            <li class="interest_chip">집순이</li>
+            <li class="interest_chip">여행가고싶다</li>
+            <li class="interest_chip">족발보쌈 x</li>
+            <li class="interest_chip">크리스마스</li>
+            <li class="interest_chip">겨울</li>
+          </ul>
+        </section>
+  
+        <!-- 카드(나의 모습) 섹션 -->
+        <section class="self_card_container" id="myself_section">
+          <h2 class="section_title">나의 모습</h2>
+          <div class="card_container">
+            <article class="card">
+              <img class="card_image" src="./images/card1.webp" alt="바다에서 사진찍는 모습"/>
+              <div class="card_bottom_contents">
+                <div class="contents_top">
+                  <p class="card_title">바다 좋아함</p>
+                  <button class="like">♥</button>
+                </div>
+                <p class="card_description">
+                  바다 멍 3시간 때린 적 있음 <br/> 작년에 본 바다가 마지막임
+                </p>
+              </div>
+            </article>
+  
+            <article class="card">
+              <img class="card_image" src="./images/card2.webp" alt="눈사람 만드는 모습"/>
+              <div class="card_bottom_contents">
+                <div class="contents_top">
+                  <p class="card_title">눈사람 좋아함</p>
+                  <button class="like">♥</button>
+                </div>
+                <p class="card_description">
+                  겨울에 <strong>눈사람</strong> 만드는 거 좋아함 <br> 사진 속 눈 사람 직접 만듬
+                </p>
+              </div>
+            </article>
+      
+            <article class="card">
+              <img class="card_image" src="./images/card3.webp" alt="강아지"/>
+              <div class="card_bottom_contents">
+                <div class="contents_top">
+                  <p class="card_title">강아지 키움</p>
+                  <button class="like">♥</button>
+                </div>
+                <p class="card_description">
+                  비숑 2마리 키움<br>하늘이 별이
+                </p>
+              </div>
+            </article>
+      
+            <article class="card">
+              <img class="card_image" src="./images/card4.webp" alt="야구 직관 모습"/>
+              <div class="card_bottom_contents">
+                <div class="contents_top">
+                  <p class="card_title">야구 좋아함</p>
+                  <button class="like">♥</button>
+                </div>
+                <p class="card_description">
+                  야구 보는 거 좋아함<br> 작년에 본 직관이 마지막임
+                </p>
+              </div>
+            </article>
+      
+            <article class="card">
+              <img class="card_image" src="./images/card5.webp" alt="카메라 촬영 모습"/>
+              <div class="card_bottom_contents">
+                <div class="contents_top">
+                  <p class="card_title">사진 좋아함</p>
+                  <button class="like">♥</button>
+                </div>
+                <p class="card_description">
+                  사진찍는 거 좋아함<br>카메라 모으는 거 좋아함
+                </p>
+              </div>
+            </article>
+      
+            <article class="card">
+              <img class="card_image" src="./images/card6.webp" alt="기타 치는 모습"/>
+              <div class="card_bottom_contents">
+                <div class="contents_top">
+                  <p class="card_title">기타 좋아함</p>
+                  <button class="like">♥</button>
+                </div>
+                <p class="card_description">
+                  기타치는 거 좋아함<br>근데 잘 못침
+                </p>
+              </div>
+            </article>
+      
+            <article class="card">
+              <img class="card_image" src="./images/card7.webp" alt="햄버거 먹는 모습"/>
+              <div class="card_bottom_contents">
+                <div class="contents_top">
+                  <p class="card_title">햄버거 좋아함</p>
+                  <button class="like">♥</button>
+                </div>
+                <p class="card_description">
+                  앱잼 때 햄버거 먹음<br>앱잼 때 먹은 햄버거 잊지 못함
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+  
+      </main>
+    </div>
   </div>
 </body>
 </html>
