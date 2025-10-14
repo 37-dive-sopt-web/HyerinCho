@@ -58,8 +58,8 @@
 }
 
 .introduce_profile {
-  width: 13rem;
-  height: 13rem;
+  width: 17rem;
+  height: 17rem;
   object-fit: cover;
   border-radius: 100%;
   cursor: pointer;
