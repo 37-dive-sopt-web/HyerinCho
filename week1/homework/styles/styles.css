@@ -267,3 +267,49 @@
 .card_description {
   font-size: 1.2rem;
 }
+
+
+/* 사진첩(가로 스크롤) 섹션 */
+.gallery_container {
+  padding: 2.5rem 3rem;
+  scroll-margin-top: 9.5rem;
+  background-color: var(--white-color);
+  border-radius: 10px;
+}
+
+.gallery_carousel {
+  display: flex;
+  gap: 2rem;
+  border-radius: 15px;
+  overflow-x: hidden;
+  }
+
+.gallery_group {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 0;
+  animation: scrolling 22s linear infinite;
+}
+.gallery_carousel:hover .gallery_group {
+  animation-play-state: paused;
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-162rem);
+}
+}
+
+.gallery_image {
+  width: 25rem;
+  height: 18rem;
+  border-radius: 15px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.gallery_image:hover {
+  transform: scale(1.05);
+}
