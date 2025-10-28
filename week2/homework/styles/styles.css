@@ -1,3 +1,7 @@
+body {
+  background-color: var(--color-blue100);
+}
+
 /* 헤더 */
 .header-container {
   position: fixed;
@@ -25,4 +29,78 @@
 .header-introduce-text {
   font-size: 1.2rem;
   justify-self: end;
+}
+
+.main-container {
+  padding: 8rem 12rem 0;
+}
+
+
+/* 공툥으로 사용*/
+.section-container {
+  background-color: var(--color-white);
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: var(--color-blue200);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* 검색 필터 섹션 */
+.search-filter-contents {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-gap: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.input-container-grid1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  grid-column: 1 / -1;
+}
+
+.input-container-grid3 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  grid-column: span 2;
+}
+
+.input-container-grid2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  grid-column: span 3;
+}
+
+.input-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  min-width: 5rem;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--color-border-gray);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1.2rem;
 }
