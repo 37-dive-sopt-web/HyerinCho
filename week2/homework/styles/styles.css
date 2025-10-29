@@ -38,10 +38,10 @@ body {
 
 /* 공툥으로 사용*/
 .section-container {
-  background-color: var(--color-white);
   margin-top: 3rem;
   padding: 2rem;
   border-radius: 10px;
+  background-color: var(--color-white);
 }
 
 .section-title {
@@ -70,30 +70,30 @@ body {
 }
 
 .input-container-grid1 {
-  width: 100%;
   display: flex;
   align-items: center;
   grid-column: 1 / -1;
+  width: 100%;
 }
 
 .input-container-grid3 {
-  width: 100%;
   display: flex;
   align-items: center;
   grid-column: span 2;
+  width: 100%;
 }
 
 .input-container-grid2 {
-  width: 100%;
   display: flex;
   align-items: center;
   grid-column: span 3;
+  width: 100%;
 }
 
 .input-title {
+  min-width: 5rem;
   font-size: 1.2rem;
   font-weight: 500;
-  min-width: 5rem;
 }
 
 .input, .dropdown {
@@ -132,5 +132,6 @@ body {
 
 .table-container > tbody > tr > td {
   text-align: center;
+  align-content: center;
   padding: 0.5rem 0;
 }
