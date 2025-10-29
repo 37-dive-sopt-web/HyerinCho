@@ -46,7 +46,6 @@ body {
 
 .section-title {
   font-size: 1.5rem;
-  padding-bottom: 2rem;
 }
 
 .button-container {
@@ -67,7 +66,7 @@ body {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   grid-gap: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding: 1.5rem 0;
 }
 
 .input-container-grid1 {
@@ -103,4 +102,36 @@ body {
   border-radius: 8px;
   padding: 1rem;
   font-size: 1.2rem;
+}
+
+
+/* 웹파트 목록 섹션 */
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-container {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.table-header {
+  background-color: var(--color-blue200);
+}
+
+.table-header > th {
+  padding: 1rem 0;
+  align-content: center;
+}
+
+.table-container > tbody > tr {
+  border-bottom: 1px solid var(--color-border-gray);
+}
+
+.table-container > tbody > tr > td {
+  text-align: center;
+  padding: 0.5rem 0;
 }
