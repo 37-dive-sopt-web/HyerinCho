@@ -96,7 +96,7 @@ body {
   min-width: 5rem;
 }
 
-.input {
+.input, .dropdown {
   width: 100%;
   border: 1px solid var(--color-border-gray);
   border-radius: 8px;
@@ -106,7 +106,6 @@ body {
 
 
 /* 웹파트 목록 섹션 */
-
 .title-container {
   display: flex;
   align-items: center;
