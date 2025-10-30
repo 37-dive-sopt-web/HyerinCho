@@ -36,7 +36,7 @@ body {
 }
 
 
-/* 공툥으로 사용*/
+/* 공툥 사용*/
 .section-container {
   margin-top: 3rem;
   padding: 2rem;
@@ -62,7 +62,7 @@ body {
 }
 
 /* 검색 필터 섹션 */
-.search-filter-contents {
+.filter-contents {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   grid-gap: 1.5rem;
@@ -134,4 +134,56 @@ body {
   text-align: center;
   align-content: center;
   padding: 0.5rem 0;
+}
+
+.github-link {
+  color: var(--color-blue300);
+  cursor: pointer;
+}
+
+
+/* 모달 */
+.modal {
+  position: fixed;
+  z-index: 2;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  padding: 8rem 0;
+  background-color: rgb(0.5 ,0.5, 0.5, 0.3);
+}
+.modal-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 45rem;
+  height: 52rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: var(--color-white);
+}
+
+.close-modal-btn {
+font-size: 2rem;
+cursor: pointer;
+}
+
+.modal-input-container{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.modal-button-container {
+  display: flex;
+  justify-content: end;
+}
+
+.submit-btn {
+width: 6rem;
 }
