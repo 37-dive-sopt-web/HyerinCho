@@ -20,14 +20,9 @@ export const searchFilter = (data) => {
     const matchEng  = !englishName || item.englishName.toLowerCase().includes(englishName);
     const matchGithub = !github || item.github.toLowerCase().includes(github);
     const matchGender =
-      !gender ||
-      (gender === "1" && item.gender === "male") ||
-      (gender === "2" && item.gender === "female");
-
+      !gender || gender === item.gender;
     const matchRole =
-      !role ||
-      (role === "1" && item.role === "YB") ||
-      (role === "2" && item.role === "OB");
+      !role || role === item.role;
     const matchGroup = !Number.isFinite(codeReviewGroup) || item.codeReviewGroup === codeReviewGroup;
     const matchAge   = !Number.isFinite(age) || item.age === age;
 

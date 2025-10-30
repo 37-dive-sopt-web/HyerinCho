@@ -16,7 +16,7 @@ export const renderTable = (datas, tbody) => {
           <td>${name}</td>
           <td>${englishName}</td>
           <td>
-            <a href="https://github.com/${github}" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/${github}" target="_blank" rel="noopener noreferrer" class="github-link">
                 ${github}
             </a>
           </td>
