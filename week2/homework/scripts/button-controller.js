@@ -45,8 +45,70 @@ const handleDeleteButton = (deleteButton, checkAll, tbody) => {
   })
 }
 
+// 추가 버튼 클릭 시 모달 입력값을 로컬스토리지에 추가 및 반영
+const handleAddButton = (
+  addButton, 
+  tbody, 
+  {
+    nameInput,
+    engNameInput,
+    githubInput,
+    genderInput,
+    roleInput,
+    codeReviewGroupInput,
+    ageInput,
+  },
+  closeModal
+) => {
+  addButton.addEventListener("click", () => {
+    if (
+      !nameInput.value.trim() ||
+      !engNameInput.value.trim() ||
+      !githubInput.value.trim() ||
+      !genderInput.value ||
+      !roleInput.value ||
+      !codeReviewGroupInput.value.trim() ||
+      !ageInput.value.trim()
+    ) {
+      alert("모든 입력 항목을 입력해주세요");
+      return;
+    }
+
+    const codeReviewGroup = Number(codeReviewGroupInput.value);
+    const age = Number(ageInput.value);
+
+    const data = getLocalStorage();
+
+    const newMember = {
+      id: Date.now(),
+      name: nameInput.value,
+      englishName: engNameInput.value,
+      github: githubInput.value,
+      gender: genderInput.value,
+      role: roleInput.value,
+      codeReviewGroup,
+      age
+    };
+
+    data.push(newMember);
+    setLocalStorage(data);
+    renderTable(data, tbody);
+    closeModal();
+
+    // 입력 후 모달 내 입력창 초기화
+    nameInput.value = "";
+    engNameInput.value = "";
+    githubInput.value = "";
+    genderInput.value = "";
+    roleInput.value = "";
+    codeReviewGroupInput.value = "";
+    ageInput.value = "";
+  })
+}
+
 export {
   handleResetButton,
   handleApplyButton,
   handleDeleteButton,
+  handleAddButton,
 }
