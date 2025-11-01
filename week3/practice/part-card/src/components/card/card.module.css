@@ -1,0 +1,12 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 200px;
+  border-radius: 8px;
+  background-color: #bff4f4;
+}
+
+.card > p {
+font-size: 14px;
+}
