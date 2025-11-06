@@ -37,6 +37,9 @@ export default [
     rules: {
       ...(react.configs?.recommended?.rules ?? {}),
 
+      "react/prop-types": "off",
+      "react/require-default-props": "off",
+
       curly: ["error", "all"],
       "no-console": "warn",
       "no-unused-vars": ["warn", { argsIgnorePattern: "^_|^args$" }],
