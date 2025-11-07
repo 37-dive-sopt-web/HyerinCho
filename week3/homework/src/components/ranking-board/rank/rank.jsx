@@ -1,6 +1,6 @@
-import * as styles from "./history.css";
+import * as styles from "./rank.css";
 
-const History = ({ rank, level, clearTime, recordTime }) => {
+const Lank = ({ rank, level, clearTime, recordTime }) => {
   return (
     <tr className={styles.tableBodyContainer}>
       <td className={styles.tableBody}>{rank}</td>
@@ -11,4 +11,4 @@ const History = ({ rank, level, clearTime, recordTime }) => {
   );
 };
 
-export default History;
+export default Lank;
