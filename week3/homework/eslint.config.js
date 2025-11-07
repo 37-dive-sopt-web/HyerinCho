@@ -55,7 +55,7 @@ export default [
           groups: [
             ["^node:"],
             ["^react$", "^@?\\w"],
-            ["^@pages/*", "^@shared/*"],
+            ["^@pages/*", "^@components/*", "^@styles/*", "^@utils/*"],
             ["^\\u0000"],
             ["^\\."],
             ["^.+\\.css$"],
