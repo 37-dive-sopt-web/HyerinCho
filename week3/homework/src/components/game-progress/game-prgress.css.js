@@ -61,7 +61,7 @@ export const description = style({
   fontSize: "1.1rem",
 });
 
-export const historyContainer = recipe({
+export const currentHistoryContainer = recipe({
   variants: {
     history: {
       true: {
@@ -80,5 +80,5 @@ export const historyContainer = recipe({
 });
 
 export const historyInfoText = style({
-  color: color.blue500,
+  color: color.blue600,
 });

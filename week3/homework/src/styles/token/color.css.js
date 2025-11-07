@@ -6,7 +6,9 @@ export const color = {
   blue500: "#4C86E3",
   blue600: "#25549F",
 
+  gray100: "#959595",
+
   white: "#FFFFFF",
 
-  error100: "#C7837D",
+  red100: "#C7837D",
 };

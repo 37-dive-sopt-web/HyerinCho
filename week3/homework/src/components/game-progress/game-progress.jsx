@@ -1,11 +1,14 @@
+import CurrentHistory from "@components/current-history/current-history";
+
 import * as styles from "./game-prgress.css";
 
 const GameProgress = ({
   history,
   infoMessage,
-  remainingTime = 8,
-  successCard = 4,
-  remainCard = 8,
+  remainTime,
+  allCardPair,
+  successCardPair,
+  remainCardPair,
   gameLevel,
   onChangeLevel,
   generateDeck,
@@ -30,15 +33,17 @@ const GameProgress = ({
       <div className={styles.recentProgressContainer}>
         <div className={styles.recentProgress}>
           <p>남은 시간</p>
-          <p className={styles.recentProgressNumber}>{remainingTime}</p>
+          <p className={styles.recentProgressNumber}>{remainTime}</p>
         </div>
         <div className={styles.recentProgress}>
           <p>성공한 짝</p>
-          <p className={styles.recentProgressNumber}>{successCard}/8</p>
+          <p className={styles.recentProgressNumber}>
+            {successCardPair}/{allCardPair}
+          </p>
         </div>
         <div className={styles.recentProgress}>
           <p>남은 짝</p>
-          <p className={styles.recentProgressNumber}>{remainCard}</p>
+          <p className={styles.recentProgressNumber}>{remainCardPair}</p>
         </div>
       </div>
       <>
@@ -54,14 +59,23 @@ const GameProgress = ({
       <>
         <p className={styles.title}>최근 히스토리</p>
         <div
-          className={styles.historyContainer({
-            history: history ? true : false,
+          className={styles.currentHistoryContainer({
+            history: history.length === 0 ? false : true,
           })}
         >
-          {history ? (
-            <></>
-          ) : (
+          {history.length === 0 ? (
             <p className={styles.historyInfoText}>아직 뒤집은 카드가 없어요</p>
+          ) : (
+            <>
+              {history.map((data, index) => (
+                <CurrentHistory
+                  key={index}
+                  firstCard={data.value[0]}
+                  secondCard={data.value[1]}
+                  successState={data.result}
+                />
+              ))}
+            </>
           )}
         </div>
       </>

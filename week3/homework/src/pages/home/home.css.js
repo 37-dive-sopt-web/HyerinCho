@@ -8,7 +8,7 @@ export const homeContainer = style({
   gap: "2rem",
   padding: "2rem 26rem",
   width: "100%",
-  height: "100%",
+  minHeight: "100vh",
   backgroundColor: color.blue100,
 
   "@media": {
