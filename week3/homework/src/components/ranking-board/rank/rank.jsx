@@ -5,7 +5,7 @@ const Lank = ({ rank, level, clearTime, recordTime }) => {
     <tr className={styles.tableBodyContainer}>
       <td className={styles.tableBody}>{rank}</td>
       <td className={styles.tableBody}>Level {level}</td>
-      <td className={styles.tableBody}>{clearTime}</td>
+      <td className={styles.tableBody}>{clearTime}초</td>
       <td className={styles.tableBody}>{recordTime}</td>
     </tr>
   );

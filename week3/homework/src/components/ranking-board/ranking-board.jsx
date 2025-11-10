@@ -1,13 +1,26 @@
+import { useState } from "react";
+
+import { getLocalStorage, resetLocalStorage } from "@utils/local-storage";
+
 import Lank from "./rank/rank";
 
 import * as styles from "./ranking-borad.css";
 
 const RankingBoard = () => {
+  const [rankingData, setRankingData] = useState(() => getLocalStorage());
+
+  const handleResetRecord = () => {
+    resetLocalStorage();
+    setRankingData([]);
+  };
+
   return (
     <main className={styles.boardContainer}>
       <div className={styles.titleContainer}>
         <h2 className={styles.gameTitle}>랭킹 보드</h2>
-        <button className={styles.button}>기록 초기화</button>
+        <button className={styles.button} onClick={handleResetRecord}>
+          기록 초기화
+        </button>
       </div>
       <table className={styles.tableAllContainer}>
         <thead className={styles.tableHeaderContainer}>
@@ -19,18 +32,16 @@ const RankingBoard = () => {
           </tr>
         </thead>
         <tbody>
-          <Lank
-            rank={1}
-            level={1}
-            clearTime={21.96}
-            recordTime={"2025.11.1 오전 1:58:34"}
-          />
-          <Lank
-            rank={1}
-            level={1}
-            clearTime={21.96}
-            recordTime={"2025.11.1 오전 1:58:34"}
-          />
+          {rankingData.map(({ clearTime, level, recordTime, rank }) => (
+            <>
+              <Lank
+                rank={rank}
+                level={level}
+                clearTime={clearTime}
+                recordTime={recordTime}
+              />
+            </>
+          ))}
         </tbody>
       </table>
     </main>
