@@ -60,7 +60,6 @@ export const useMatchGame = (deckInfo, initialTime) => {
     if (matched.size === deckInfo.data.length && deckInfo.data.length > 0) {
       const finalRemain = stop();
       finalRemainRef.current = finalRemain;
-      stop();
       setGameOver(true);
       setSuccess(true);
       setMessage(INFO_MESSAGE.ready);
