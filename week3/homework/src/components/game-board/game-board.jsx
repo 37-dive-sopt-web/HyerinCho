@@ -24,7 +24,6 @@ const GameBoard = () => {
     data: buildDeck(1),
     level: 1,
   }));
-
   const initialTimeForLevel = INITIAL_TIME_BY_LEVEL[deckInfo.level];
 
   const {
@@ -65,6 +64,8 @@ const GameBoard = () => {
     setShowModal(false);
   };
 
+  const time = Number((initialTimeForLevel - remainTime).toFixed(2));
+
   return (
     <>
       <main className={styles.gameBoardContainer}>
@@ -86,17 +87,17 @@ const GameBoard = () => {
           remainTime={remainTime}
           message={message}
         />
-        {showModal && (
-          <Modal
-            countInfo={3}
-            onClose={closeModal}
-            handleReset={handleReset}
-            success={success}
-            gameLevel={gameLevel}
-            time={Number((initialTimeForLevel - remainTime).toFixed(2))}
-          />
-        )}
       </main>
+      {showModal && (
+        <Modal
+          countInfo={3}
+          onClose={closeModal}
+          handleReset={handleReset}
+          success={success}
+          gameLevel={gameLevel}
+          time={time}
+        />
+      )}
     </>
   );
 };
