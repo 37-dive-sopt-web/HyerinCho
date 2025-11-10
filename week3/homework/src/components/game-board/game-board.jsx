@@ -93,7 +93,7 @@ const GameBoard = () => {
             handleReset={handleReset}
             success={success}
             gameLevel={gameLevel}
-            time={initialTimeForLevel - remainTime}
+            time={Number((initialTimeForLevel - remainTime).toFixed(2))}
           />
         )}
       </main>

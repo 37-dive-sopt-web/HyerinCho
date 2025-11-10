@@ -34,7 +34,9 @@ const GameProgress = ({
       <div className={styles.recentProgressContainer}>
         <div className={styles.recentProgress}>
           <p>남은 시간</p>
-          <p className={styles.recentProgressNumber}>{remainTime}</p>
+          <span className={styles.recentProgressNumber}>
+            {remainTime.toFixed(2)}
+          </span>
         </div>
         <div className={styles.recentProgress}>
           <p>성공한 짝</p>

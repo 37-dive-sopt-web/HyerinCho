@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
-import { useState } from "react";
 
-import { addLocalStorage, getLocalStorage } from "@utils/local-storage";
+import { saveRecord } from "@utils/save-record";
+
+import { useMatchTimer } from "./use-match-timer";
 
 const MISMATCH_DELAY = 700;
 
@@ -21,12 +22,18 @@ export const useMatchGame = (deckInfo, initialTime) => {
   const [history, setHistory] = useState([]);
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState(INFO_MESSAGE.ready);
+  const [gameOver, setGameOver] = useState(false);
+  const savedOnceRef = useRef(false);
+  const finalRemainRef = useRef(null);
 
   //timer 관련
-  const [started, setStarted] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
-  const [remainTime, setRemainTime] = useState(initialTime);
-  const timerRef = useRef(null);
+  const {
+    remainTime,
+    started,
+    start,
+    stop,
+    reset: resetTimer,
+  } = useMatchTimer(initialTime);
 
   useEffect(() => {
     setCardState(deckInfo.data.map(() => "before"));
@@ -35,70 +42,39 @@ export const useMatchGame = (deckInfo, initialTime) => {
     setHistory([]);
     setSuccess(false);
     setGameOver(false);
-    setRemainTime(initialTime);
-    setStarted(false);
-    clearTimeout(timerRef.current);
+    setMessage(INFO_MESSAGE.ready);
+    resetTimer(initialTime);
+    savedOnceRef.current = false;
   }, [deckInfo, initialTime]);
 
   useEffect(() => {
     if (!started) return;
     if (gameOver) return;
-    if (remainTime <= 0) {
-      setGameOver(true);
-      setSuccess(false);
-      return;
-    }
-    timerRef.current = window.setTimeout(() => {
-      setRemainTime((t) => t - 1);
-    }, 1000);
-
-    return () => window.clearTimeout(timerRef.current);
-  }, [started, remainTime, gameOver]);
+    if (remainTime > 0) return;
+    stop();
+    setGameOver(true);
+    setSuccess(false);
+  }, [remainTime, started, gameOver, stop]);
 
   useEffect(() => {
     if (matched.size === deckInfo.data.length && deckInfo.data.length > 0) {
+      const finalRemain = stop();
+      finalRemainRef.current = finalRemain;
+      stop();
       setGameOver(true);
       setSuccess(true);
       setMessage(INFO_MESSAGE.ready);
     }
-  }, [matched, deckInfo.data.length]);
+  }, [matched, deckInfo.data.length, stop]);
 
   useEffect(() => {
     if (!gameOver || !success) return;
+    if (savedOnceRef.current) return; // 이미 저장했다면 무시
+    savedOnceRef.current = true; // 플래그 세팅
 
-    const clearTime = initialTime - remainTime;
-    const now = new Date();
-
-    const formattedTime = now.toLocaleString("ko-KR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hour12: true,
-    });
-
-    const newRecord = {
-      level: deckInfo.level,
-      clearTime,
-      recordTime: formattedTime,
-    };
-
-    const prevData = getLocalStorage();
-    const updatedData = [...prevData, newRecord];
-
-    const sorted = updatedData.sort((a, b) => {
-      if (a.level !== b.level) return b.level - a.level;
-      return a.clearTime - b.clearTime;
-    });
-
-    const ranked = sorted.map((item, idx) => ({
-      ...item,
-      rank: idx + 1,
-    }));
-
-    addLocalStorage(ranked);
+    const finalRemain = finalRemainRef.current ?? remainTime;
+    const clearTime = Number((initialTime - finalRemain).toFixed(2));
+    saveRecord(deckInfo.level, clearTime);
   }, [gameOver, success]);
 
   const resetGame = () => {
@@ -108,8 +84,8 @@ export const useMatchGame = (deckInfo, initialTime) => {
     setRevealCard([]);
     setSuccess(false);
     setGameOver(false);
-    setRemainTime(initialTime);
-    clearTimeout(timerRef.current);
+    resetTimer(initialTime);
+    savedOnceRef.current = false;
   };
 
   const handleClickCard = (index, currentValue) => {
@@ -118,7 +94,7 @@ export const useMatchGame = (deckInfo, initialTime) => {
       return;
     }
 
-    if (!started) setStarted(true);
+    if (!started) start();
 
     if (revealCard.length === 0) {
       setRevealCard([{ index, value: currentValue }]);
