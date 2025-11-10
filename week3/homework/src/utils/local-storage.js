@@ -11,16 +11,10 @@ export const getLocalStorage = () => {
 
 /**
  * 새로운 값 추가
- * @param {string} value 추가할 랭킹 값 (trim 자동 처리)
+ * @param {string} value 추가할 랭킹 값
  */
 export const addLocalStorage = (value) => {
-  const addValue = value.trim();
-  if (!addValue) {
-    return;
-  }
-  const data = getLocalStorage();
-  const newData = [...data, addValue];
-  localStorage.setItem(RANKING_HISTORY_KEY, JSON.stringify(newData));
+  localStorage.setItem(RANKING_HISTORY_KEY, JSON.stringify(value));
 };
 
 /**
