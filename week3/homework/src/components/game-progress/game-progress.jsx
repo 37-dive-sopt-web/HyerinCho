@@ -12,6 +12,7 @@ const GameProgress = ({
   gameLevel,
   onChangeLevel,
   generateDeck,
+  message,
 }) => {
   const handleSelect = (e) => {
     const value = Number(e.target.value);
@@ -52,7 +53,7 @@ const GameProgress = ({
           {infoMessage ? (
             <p className={styles.description}>{infoMessage}</p>
           ) : (
-            <p className={styles.description}>카드를 눌러 게임을 시작</p>
+            <p className={styles.description}>{message}</p>
           )}
         </div>
       </>
