@@ -35,6 +35,7 @@ export const useMatchGame = (deckInfo, initialTime) => {
     reset: resetTimer,
   } = useMatchTimer(initialTime);
 
+  // 덱/제한시간 변경 시 상태 초기화
   useEffect(() => {
     setCardState(deckInfo.data.map(() => "before"));
     setMatched(new Set());
@@ -47,6 +48,7 @@ export const useMatchGame = (deckInfo, initialTime) => {
     savedOnceRef.current = false;
   }, [deckInfo, initialTime]);
 
+  // 시간 종료 시 패배 처리
   useEffect(() => {
     if (!started) return;
     if (gameOver) return;
@@ -56,6 +58,7 @@ export const useMatchGame = (deckInfo, initialTime) => {
     setSuccess(false);
   }, [remainTime, started, gameOver, stop]);
 
+  // 모든 카드 매칭 시 승리 처리
   useEffect(() => {
     if (matched.size === deckInfo.data.length && deckInfo.data.length > 0) {
       const finalRemain = stop();
@@ -66,6 +69,7 @@ export const useMatchGame = (deckInfo, initialTime) => {
     }
   }, [matched, deckInfo.data.length, stop]);
 
+  // 승리 확정 시 기록 저장(1회)
   useEffect(() => {
     if (!gameOver || !success) return;
     if (savedOnceRef.current) return; // 이미 저장했다면 무시
@@ -76,6 +80,7 @@ export const useMatchGame = (deckInfo, initialTime) => {
     saveRecord(deckInfo.level, clearTime);
   }, [gameOver, success]);
 
+  // 게임 상태 초기화
   const resetGame = () => {
     setCardState(deckInfo.data.map(() => "before"));
     setMatched(new Set());
@@ -87,6 +92,7 @@ export const useMatchGame = (deckInfo, initialTime) => {
     savedOnceRef.current = false;
   };
 
+  // 카드 클릭 처리
   const handleClickCard = (index, currentValue) => {
     if (cardState[index] !== "before") {
       setMessage(INFO_MESSAGE.alreadySelected);
@@ -143,6 +149,7 @@ export const useMatchGame = (deckInfo, initialTime) => {
       }
 
       if (!compareResult) {
+        // 불일치 시 딜레이 뒤 뒤집기
         setMessage(INFO_MESSAGE.fail);
         setTimeout(() => {
           setCardState((prev) => {
