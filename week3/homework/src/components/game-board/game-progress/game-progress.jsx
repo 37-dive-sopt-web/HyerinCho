@@ -1,4 +1,5 @@
 import CurrentHistory from "../current-history/current-history";
+import GameInfo from "../game-info/game-info";
 
 import * as styles from "./game-prgress.css";
 
@@ -11,13 +12,11 @@ const GameProgress = ({
   remainCardPair,
   gameLevel,
   onChangeLevel,
-  generateDeck,
   message,
 }) => {
   const handleSelect = (e) => {
     const value = Number(e.target.value);
     onChangeLevel(value);
-    generateDeck(value);
   };
 
   return (
@@ -31,23 +30,13 @@ const GameProgress = ({
         <option value={2}>Level 2</option>
         <option value={3}>Level 3</option>
       </select>
+
       <div className={styles.recentProgressContainer}>
-        <div className={styles.recentProgress}>
-          <p>남은 시간</p>
-          <span className={styles.recentProgressNumber}>
-            {remainTime.toFixed(2)}
-          </span>
-        </div>
-        <div className={styles.recentProgress}>
-          <p>성공한 짝</p>
-          <p className={styles.recentProgressNumber}>
-            {successCardPair}/{allCardPair}
-          </p>
-        </div>
-        <div className={styles.recentProgress}>
-          <p>남은 짝</p>
-          <p className={styles.recentProgressNumber}>{remainCardPair}</p>
-        </div>
+        <GameInfo title="남은시간">{remainTime}</GameInfo>
+        <GameInfo title="성공한 짝">
+          {successCardPair}/{allCardPair}
+        </GameInfo>
+        <GameInfo title="남은 짝">{remainCardPair}</GameInfo>
       </div>
       <>
         <p className={styles.title}>안내 메시지</p>
