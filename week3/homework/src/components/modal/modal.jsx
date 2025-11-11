@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { useCallback } from "react";
 import { createPortal } from "react-dom";
+import { useCountdown } from "src/hooks/use-count-down";
 
 import * as styles from "./modal.css";
 
@@ -21,6 +20,7 @@ const MODAL_TEXT = {
 };
 
 const Modal = ({
+  isOpen,
   countInfo,
   onClose,
   handleReset,
@@ -28,28 +28,20 @@ const Modal = ({
   success,
   time,
 }) => {
-  const [count, setCount] = useState(countInfo);
   const TEXT = success ? MODAL_TEXT.success : MODAL_TEXT.fail;
 
-  const handleClose = useCallback(() => {
+  const finishAndClose = useCallback(() => {
     handleReset?.();
     onClose?.();
   }, [handleReset, onClose]);
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCount((prev) => {
-        if (prev <= 1) {
-          clearInterval(id);
-          handleClose();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+  const count = useCountdown({
+    initial: countInfo,
+    isActive: isOpen,
+    onEnd: finishAndClose,
+  });
 
-    return () => clearInterval(id);
-  }, [handleClose]);
+  if (!isOpen) return null;
 
   return createPortal(
     <div className={styles.background}>

@@ -41,8 +41,8 @@ export const useMatchGame = (deckInfo, initialTime) => {
     if (gameOver) return;
     if (remainTime > 0) return;
     stop();
-    setGameOver(true);
     setSuccess(false);
+    setGameOver(true);
   }, [remainTime, started, gameOver, stop]);
 
   // 모든 카드 매칭 시 승리 처리
@@ -50,8 +50,8 @@ export const useMatchGame = (deckInfo, initialTime) => {
     if (matched.size === deckInfo.data.length && deckInfo.data.length > 0) {
       const finalRemain = stop();
       finalRemainRef.current = finalRemain;
-      setGameOver(true);
       setSuccess(true);
+      setGameOver(true);
       setMessage(INFO_MESSAGE.ready);
     }
   }, [matched, deckInfo.data.length, stop]);
@@ -68,14 +68,17 @@ export const useMatchGame = (deckInfo, initialTime) => {
   }, [gameOver, success]);
 
   // 게임 상태 초기화
-  const resetGame = () => {
-    setCardState(deckInfo.data.map(() => "before"));
+  const resetGame = (
+    nextDeckInfo = deckInfo,
+    nextInitialTime = initialTime,
+  ) => {
+    setCardState(nextDeckInfo.data.map(() => "before"));
     setMatched(new Set());
     setHistory([]);
     setRevealCard([]);
     setSuccess(false);
     setGameOver(false);
-    resetTimer(initialTime);
+    resetTimer(nextInitialTime);
     savedOnceRef.current = false;
   };
 

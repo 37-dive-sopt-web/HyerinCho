@@ -1,30 +1,30 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMatchGame } from "src/hooks/use-match-game";
 
 import Modal from "@components/modal/modal";
 import { buildDeck } from "@utils/build-deck";
 
-import Game from "../game/game";
-import GameProgress from "../game-progress/game-progress";
+import Game from "./game/game";
+import GameProgress from "./game-progress/game-progress";
 
 import * as styles from "./game-board.css";
 
-const INITIAL_TIME_BY_LEVEL = {
+const LEVEL_TIME = {
   1: 45,
   2: 60,
   3: 100,
 };
 
 const GameBoard = () => {
-  const [gameLevel, setGameLevel] = useState(1);
+  const [level, setLevel] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [deckInfo, setDeckInfo] = useState(() => ({
     status: "ready",
     data: buildDeck(1),
     level: 1,
   }));
-  const initialTimeForLevel = INITIAL_TIME_BY_LEVEL[deckInfo.level];
+
+  const initialTime = LEVEL_TIME[level];
 
   const {
     resetGame,
@@ -38,7 +38,7 @@ const GameBoard = () => {
     gameOver,
     success,
     message,
-  } = useMatchGame(deckInfo, initialTimeForLevel);
+  } = useMatchGame(deckInfo, initialTime);
 
   useEffect(() => {
     if (gameOver) {
@@ -46,38 +46,41 @@ const GameBoard = () => {
     }
   }, [gameOver]);
 
-  const handleReset = () => {
-    generateDeck(deckInfo.level);
-    resetGame();
+  const generateDeck = (nextLevel) => {
+    const data = buildDeck(nextLevel);
+    const nextDeck = { status: "ready", data, level: nextLevel };
+    setDeckInfo(nextDeck);
+    resetGame(nextDeck, LEVEL_TIME[nextLevel]);
   };
 
-  const generateDeck = (level = deckInfo.level) => {
-    const data = buildDeck(level);
-    setDeckInfo({ status: "ready", data, level });
+  const handleReset = () => {
+    generateDeck(level);
   };
 
   const handleChangeLevel = (nextLevel) => {
-    setGameLevel(nextLevel);
+    if (nextLevel === level) return;
+    setLevel(nextLevel);
+    generateDeck(nextLevel);
   };
 
   const closeModal = () => {
     setShowModal(false);
   };
 
-  const time = Number((initialTimeForLevel - remainTime).toFixed(2));
+  const time = Number((initialTime - remainTime).toFixed(2));
 
   return (
     <>
       <main className={styles.gameBoardContainer}>
         <Game
-          gameLevel={gameLevel}
+          gameLevel={level}
           deckInfo={deckInfo}
           handleReset={handleReset}
           handleCardReveal={handleClickCard}
           cardState={cardState}
         />
         <GameProgress
-          gameLevel={gameLevel}
+          gameLevel={level}
           onChangeLevel={handleChangeLevel}
           generateDeck={generateDeck}
           remainCardPair={remainCardPair}
@@ -88,16 +91,15 @@ const GameBoard = () => {
           message={message}
         />
       </main>
-      {showModal && (
-        <Modal
-          countInfo={3}
-          onClose={closeModal}
-          handleReset={handleReset}
-          success={success}
-          gameLevel={gameLevel}
-          time={time}
-        />
-      )}
+      <Modal
+        isOpen={showModal}
+        countInfo={3}
+        onClose={closeModal}
+        handleReset={handleReset}
+        success={success}
+        gameLevel={level}
+        time={time}
+      />
     </>
   );
 };

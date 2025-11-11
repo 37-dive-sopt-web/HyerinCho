@@ -1,4 +1,4 @@
-import CurrentHistory from "@components/current-history/current-history";
+import CurrentHistory from "../current-history/current-history";
 
 import * as styles from "./game-prgress.css";
 
