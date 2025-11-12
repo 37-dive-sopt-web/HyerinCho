@@ -47,7 +47,10 @@ export default [
       "react/react-in-jsx-scope": "off",
       "react/jsx-uses-react": "off",
       // TSX 허용
-      "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".tsx"] }],
+      "react/jsx-filename-extension": [
+        "error",
+        { extensions: [".jsx", ".tsx"] },
+      ],
 
       // Hooks 권장
       ...reactHooks.configs.recommended.rules,
@@ -56,7 +59,10 @@ export default [
       curly: ["error", "all"],
       "no-console": "warn",
       "no-unused-vars": "off", // TS 규칙으로 대체
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_|^args$" }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_|^args$" },
+      ],
 
       // import 정렬
       "simple-import-sort/imports": [
@@ -65,7 +71,12 @@ export default [
           groups: [
             ["^node:"],
             ["^react$", "^@?\\w"],
-            ["^@pages(/.*)?$", "^@components(/.*)?$", "^@styles(/.*)?$", "^@utils(/.*)?$"],
+            [
+              "^@pages(/.*)?$",
+              "^@components(/.*)?$",
+              "^@styles(/.*)?$",
+              "^@utils(/.*)?$",
+            ],
             ["^\\u0000"], // side-effect imports
             ["^\\."],
             ["^.+\\.css$"],
