@@ -4,8 +4,8 @@ import * as styles from "./input-field.css";
 
 interface Props {
   placeHolder: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const InputField = ({ placeHolder, value, onChange, ...props }: Props) => {
