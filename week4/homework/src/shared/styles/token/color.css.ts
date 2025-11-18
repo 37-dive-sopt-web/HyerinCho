@@ -1,8 +1,8 @@
 export const color = {
-  blue100: "#CADBFF",
+  blue100: "#E3ECFF",
   blue200: "#9EC3FF",
 
-  gray100: "#959595",
+  gray100: "#C2C2C2",
 
   white: "#FFFFFF",
 
