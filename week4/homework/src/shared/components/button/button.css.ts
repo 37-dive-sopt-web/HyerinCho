@@ -13,8 +13,16 @@ export const buttonContainer = recipe({
   },
   variants: {
     disabled: {
-      true: { backgroundColor: color.blue100 },
-      false: { backgroundColor: color.blue200 },
+      true: {
+        backgroundColor: color.blue100,
+      },
+      false: {
+        backgroundColor: color.blue200,
+        ":hover": {
+          backgroundColor: color.blue300,
+          transition: "0.2s ease",
+        },
+      },
     },
   },
 });
