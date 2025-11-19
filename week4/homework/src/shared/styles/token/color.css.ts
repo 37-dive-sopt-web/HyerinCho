@@ -8,5 +8,5 @@ export const color = {
   white: "#FFFFFF",
 
   error: "#FF6557",
-  success: "#",
+  success: "#83EE72",
 };
