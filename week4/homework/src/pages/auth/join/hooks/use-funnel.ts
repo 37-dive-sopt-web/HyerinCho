@@ -75,8 +75,7 @@ export const useFunnel = ({
       ) as ReactElement<StepProps>[];
 
       const currentStepElement =
-        childArray.find((child) => child.props.name === currentRef.current) ??
-        null;
+        childArray.find((child) => child.props.name === current) ?? null;
 
       return currentStepElement;
     };
@@ -84,11 +83,8 @@ export const useFunnel = ({
     const StepComponent: FC<StepProps> = (props) =>
       props.children as ReactElement | null;
 
-    return {
-      Funnel: FunnelComponent,
-      Step: StepComponent,
-    };
-  }, []);
+    return { Funnel: FunnelComponent, Step: StepComponent };
+  }, [current]);
 
   return { Funnel, Step, next };
 };

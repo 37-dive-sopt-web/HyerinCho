@@ -1,4 +1,8 @@
 import { type ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router";
+import { routePath } from "src/routers/path";
+
+import { postJoin } from "@shared/apis/domain/auth";
 
 import {
   validateId,
@@ -38,6 +42,7 @@ export const useJoinForm = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const navigate = useNavigate();
 
   const isMatch =
     formState.password !== "" &&
@@ -85,8 +90,23 @@ export const useJoinForm = () => {
     }
   };
 
-  const handleSubmit = () => {
-    //@TODO API 호출
+  const handleSubmit = async () => {
+    try {
+      await postJoin({
+        username: formState.id,
+        password: formState.password,
+        name: formState.name,
+        email: formState.email,
+        age: Number(formState.age),
+      });
+
+      alert("회원가입 성공!");
+      navigate(routePath.LOGIN);
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    }
   };
 
   return {

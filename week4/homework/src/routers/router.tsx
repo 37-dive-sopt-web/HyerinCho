@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router";
 import Join from "@pages/auth/join/join";
 import Login from "@pages/auth/login/login";
 import Error from "@pages/error/error";
+import Member from "@pages/member/member";
 import My from "@pages/my/my";
 
 import Layout from "./layout";
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: routePath.MEMBERS,
-        element: <Join />,
+        element: <Member />,
       },
     ],
   },
