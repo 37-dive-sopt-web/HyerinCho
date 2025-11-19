@@ -1,12 +1,13 @@
-import type { ChangeEventHandler } from "react";
+import { type ChangeEventHandler, useState } from "react";
 
 import * as styles from "./input-field.css";
 
-interface Props {
+interface InputFieldProps {
   name?: string;
-  placeHolder: string;
-  value?: string;
+  placeHolder?: string;
+  value?: string | number;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  isEyeIcon?: boolean;
 }
 
 const InputField = ({
@@ -14,18 +15,41 @@ const InputField = ({
   placeHolder,
   value,
   onChange,
-  ...props
-}: Props) => {
+  isEyeIcon = false,
+}: InputFieldProps) => {
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisible = () => {
+    setVisible((prev) => !prev);
+  };
+
+  const inputType = !isEyeIcon ? "text" : visible ? "text" : "password";
+
   return (
     <>
-      <input
-        name={name}
-        className={styles.input}
-        value={value}
-        onChange={onChange}
-        placeholder={placeHolder}
-        {...props}
-      />
+      <div className={styles.inputContainer}>
+        <input
+          name={name}
+          type={inputType}
+          className={styles.input}
+          value={value}
+          onChange={onChange}
+          placeholder={placeHolder}
+        />
+        {isEyeIcon && (
+          <button
+            type="button"
+            onClick={toggleVisible}
+            aria-label={visible ? "비밀번호 숨기기" : "비밀번호 보기"}
+          >
+            {visible ? (
+              <img className={styles.image} src="/open-eyes.png" />
+            ) : (
+              <img className={styles.image} src="/hide-eyes.png" />
+            )}
+          </button>
+        )}
+      </div>
     </>
   );
 };

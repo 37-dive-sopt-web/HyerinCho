@@ -27,6 +27,7 @@ const Password = ({
       <div className={styles.filedContainer}>
         <p className={styles.inputTitle}>비밀번호</p>
         <InputField
+          isEyeIcon
           name="password"
           placeHolder="비밀번호 입력해주세요"
           value={password}
@@ -36,6 +37,7 @@ const Password = ({
       <div className={styles.filedContainer}>
         <p className={styles.inputTitle}>비밀번호 확인</p>
         <InputField
+          isEyeIcon
           name="passwordConfirm"
           placeHolder="비밀번호 확인"
           value={passwordConfirm}
