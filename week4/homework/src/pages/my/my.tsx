@@ -11,7 +11,7 @@ import * as styles from "./my.css";
 
 const My = () => {
   const [userInfo, setUserInfo] = useState<UserResponse | null>(null);
-  const [isChange, setIsChange] = useState(false);
+  const [isChange, setIsChange] = useState<boolean>(false);
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {

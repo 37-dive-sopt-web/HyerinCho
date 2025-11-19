@@ -8,15 +8,13 @@ import {
   useState,
 } from "react";
 
-type StepName = string;
-
 interface UseFunnelOptions {
-  initial: StepName;
-  steps: StepName[];
+  initial: string;
+  steps: string[];
 }
 
 interface StepProps {
-  name: StepName;
+  name: string;
   children: ReactNode;
 }
 
@@ -44,14 +42,14 @@ export const useFunnel = ({
   initial,
   steps,
 }: UseFunnelOptions): UseFunnelResult => {
-  const [current, setCurrent] = useState<StepName>(initial);
+  const [current, setCurrent] = useState<string>(initial);
 
-  const currentRef = useRef<StepName>(initial);
+  const currentRef = useRef<string>(initial);
   currentRef.current = current;
 
   const stepIndexMap = useMemo(
     () =>
-      steps.reduce<Record<StepName, number>>((acc, step, index) => {
+      steps.reduce<Record<string, number>>((acc, step, index) => {
         acc[step] = index;
         return acc;
       }, {}),

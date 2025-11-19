@@ -17,7 +17,7 @@ const InputField = ({
   onChange,
   isEyeIcon = false,
 }: InputFieldProps) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
 
   const toggleVisible = () => {
     setVisible((prev) => !prev);
